@@ -84,7 +84,8 @@ router.get('/timeline/:userId', async (req, res) => {
         return Post.find({ userId: followedId })
       })
     )
-    res.status(200).json(userPosts.concat(...followedPosts))
+    const posts = userPosts.concat(...followedPosts);
+    res.status(200).json(posts)
   } catch (err) {
     res.status(500).json(err);
   }
