@@ -10,6 +10,7 @@ const postRoute = require("./routes/posts");
 const imageRoute = require("./routes/images");
 const conversationRoute = require("./routes/coversations");
 const messagesRoute = require("./routes/messages");
+const groupRoute = require("./routes/group");
 const cors = require("cors");
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/images", imageRoute);
 app.use("/api/conversations", conversationRoute);
+app.use("/api/group", groupRoute);
 app.use("/api/messages", messagesRoute);
 // hardcode fix
 app.use("/api/profile/images", imageRoute);
