@@ -33,14 +33,18 @@ router.get("/:userId", async (req, res) => {
 // add user to Group
 router.post("/add/:userId", async (req, res) => {
 	try {
+		// check if user is already in a group
 		const user = await Conversation.find({
-			members: { $in: [req.params.userId] },
-		});
-		if (user) return res.status(200).json("User is already in a chat room");
-		const group = await Conversation.findOne({ groupName: req.body.groupName });
-		const updatedGroup = await Conversation.findByIdAndUpdate(
+			groupName: req.body.groupName,
+			members: {
+				$in: [req.params.userId]
+			}
+		})
+		if (user) res.status(200).json('User already in a group');
+		// add a user
+		const updatedGroup = await Conversation.findOneAndUpdate(
 			{
-				_id: group._id,
+				groupName: req.body.groupName,
 			},
 			{
 				$push: { members: req.params.userId },
