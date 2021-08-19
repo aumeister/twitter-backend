@@ -19,7 +19,7 @@ router.get("/:userId", async (req, res) => {
 	try {
 		const conversations = await Conversation.find({
 			members: { $in: [req.params.userId] },
-			isGroup: req.params.isGroup
+			isGroup: false
 		});
 		res.status(200).json(conversations);
 	} catch (err) {

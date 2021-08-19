@@ -12,10 +12,10 @@ router.post("/", async (req, res) => {
 	}
 });
 //get
-router.get("/:coversationId", async (req, res) => {
+router.get("/:conversationId", async (req, res) => {
 	try {
 		const messages = await Message.find({
-			coversationId: req.params.coversationId,
+			conversationId: req.params.conversationId,
 		});
 		res.status(200).json(messages);
 	} catch (err) {
